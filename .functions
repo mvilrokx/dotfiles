@@ -1,0 +1,31 @@
+# To use these functions with zsh, just symlink this file like so: 
+# $ ln -s ~/.functions ~/.oh-my-zsh/custom/functions.zsh
+
+# Search through your entire history
+# Usage:
+#   h foo # search entire history for "foo"
+function h() {
+    # check if we passed any parameters
+    if [ -z "$*" ]; then
+        # if no parameters were passed print entire history
+        history 1
+    else
+        # if words were passed use it as a search
+        history 1 | egrep --color=auto "$@"
+    fi
+}
+
+# Interactive history search
+# Usage:
+#   fh
+function fh() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# Function that will automatically exand your aliases on your current command line after you press space
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
