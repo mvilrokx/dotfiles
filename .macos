@@ -117,7 +117,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
 
 # Show battery percentage in menu bar
-defaults write com.apple.menuextra.battery ShowPercent YES
+# defaults write com.apple.menuextra.battery ShowPercent YES
+defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
 
 # Add Date to Clock in menu bar
 defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM h:mm a"
@@ -861,7 +862,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # GPGMail 2                                                                   #
 ###############################################################################
 
-# Disable signing emails by default
+Disable signing emails by default
 #defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
 
 ###############################################################################
