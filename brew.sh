@@ -129,6 +129,8 @@ brew install --cask vlc
 brew install --cask xquartz
 brew install --cask zoom
 
+brew install --cask hpedrorodrigues/tools/dockutil
+
 # Install apps from the App Store
 # requires mas, which is installed in the above brews
 mas install 1451685025  # WireGuard
