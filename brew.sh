@@ -131,11 +131,6 @@ brew install --cask zoom
 
 brew install --cask hpedrorodrigues/tools/dockutil
 
-# Oh-my-ZSH Plugins
-brew install zsh-autosuggestions
-brew install zsh-history-substring-search
-brew install zsh-syntax-highlighting
-
 # Install apps from the App Store
 # requires mas, which is installed in the above brews
 mas install 1451685025  # WireGuard
