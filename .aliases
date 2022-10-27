@@ -1,5 +1,8 @@
-# To use these aliases with zsh, just symlink this file like so: 
+# To use these aliases with zsh, just symlink this file like so:
 # $ ln -s ~/.aliases ~/.oh-my-zsh/custom/aliases.zsh
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias cd..='cd ..'
@@ -58,7 +61,7 @@ alias sudo='sudo '
 alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; brew cask upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -71,6 +74,14 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# info
+alias displays="system_profiler SPDisplaysDataType"
+alias cpuinfo="sysctl -n machdep.cpu.brand_string"
+alias cpu='top -o cpu'   # CPU
+alias mem='top -o rsize' # Memory
+# Disk
+alias du='du -h'
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
