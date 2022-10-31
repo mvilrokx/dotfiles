@@ -32,4 +32,4 @@ sed -i.old 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kub
 
 source $ZSHRC
 
-echo "Run `p10k configure` to configure your prompt with powerlevel10k"
+echo "Run 'p10k configure' to configure your prompt with powerlevel10k"
