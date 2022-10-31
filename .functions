@@ -13,7 +13,7 @@ function cdf() { # short for `cdfinder`
 # Install font using brew cask
 function font() {
 	local fontName="font-${*}";
-	brew cask install "${fontName}";
+	brew install --cask "${fontName}";
 }
 
 function addBrew() {
