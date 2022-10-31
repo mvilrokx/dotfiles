@@ -123,7 +123,8 @@ brew install --cask slack
 brew install --cask spotify
 brew install --cask stoplight-studio
 brew install --cask typora
-brew install --cask virtualbox
+# Does not work on Apple Silicon (M1, etc.)
+# brew install --cask virtualbox
 brew install --cask visual-studio-code
 brew install --cask vlc
 brew install --cask xquartz
