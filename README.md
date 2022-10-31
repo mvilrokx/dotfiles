@@ -66,6 +66,8 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mathiasbynens/dotfiles/fork) instead, though.
 
+## Post Install steps (optional)
+
 ### Sensible macOS defaults
 
 When setting up a new Mac, you may want to set some sensible macOS defaults:
@@ -84,19 +86,45 @@ When setting up a new Mac, you may want to install some common [Homebrew](https:
 
 Some of the functionality of these dotfiles depends on formulae installed by `brew.sh`. If you don’t plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is Bash/Git completion: the dotfiles use a special version from Homebrew.
 
+### Install oh-my-zsh
+
+I use the ZSH shell on my Mac with [oh-my-zsh](https://ohmyz.sh/). You can use the included `oh-my-zsh.sh` script to install it with some plugins I like to use:
+
+```bash
+./oh-my-zsh.sh
+```
+
+## Manual Steps
+I have to do these steps manually, in the UI, because I cannot find a way to do this from the CLI:
+
+1. Set the Bluetooth Icon in the menubar
+1. Set the Mouse Speed (in BetterTouchTool or System Preferences)
+1. Install Golang. There is a brew pkg available, but I think it is recommended that you just donwload and install it as per the instructions on [the go.dev website](https://go.dev/doc/install).
+1. Add License Keys for:
+    1. Alfred
+    1. BetterTouchTool
+    1. Typora
+1. Add Folders to Favorites
+1. Add "Internet Accounts" (System Preferences). Start with iCloud as I believe that pulls in all the other ones.
+
+For work laptop:
+
+1. Setup VPNs
+
 ## Feedback
 
 Suggestions/improvements
-[welcome](https://github.com/mathiasbynens/dotfiles/issues)!
+[welcome](https://github.com/mvilrokx/dotfiles/issues)!
 
 ## Author
 
-| [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
+| [![twitter/mvilrokx](https://s.gravatar.com/avatar/851baf96e981a79b07a08b106205ba98?s=300)](https://twitter.com/mvilrokx "Follow @mvilrokx on Twitter") |
 |---|
-| [Mathias Bynens](https://mathiasbynens.be/) |
+| [Mark Vilrokx](https://www.vilrokx.com/) |
 
 ## Thanks to…
 
+* [Mathias' Bynens dotfiles repository](https://github.com/mathiasbynens/dotfiles)
 * @ptb and [his _macOS Setup_ repository](https://github.com/ptb/mac-setup)
 * [Ben Alman](http://benalman.com/) and his [dotfiles repository](https://github.com/cowboy/dotfiles)
 * [Cătălin Mariș](https://github.com/alrra) and his [dotfiles repository](https://github.com/alrra/dotfiles)
