@@ -94,6 +94,15 @@ I use the ZSH shell on my Mac with [oh-my-zsh](https://ohmyz.sh/). You can use t
 ./oh-my-zsh.sh
 ```
 
+### Customize Apps in Dock
+
+I use this to remove all apps from the dock and add the ones I want/use:
+
+```bash
+./dock.sh
+```
+
+
 ## Manual Steps
 I have to do these steps manually, in the UI, because I cannot find a way to do this from the CLI:
 
