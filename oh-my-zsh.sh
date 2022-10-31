@@ -15,8 +15,6 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 # Install zsh-syntax-highlighting plugin
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo "Make sure you edit ~/.zshrc and add the plugins"
-
 # Save zshrc file
 ZSHRC=~/.zshrc
 
