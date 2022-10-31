@@ -30,6 +30,4 @@ sed -i.old 's/\(^ZSH_THEME=\).*/\1"powerlevel10k\/powerlevel10k"/' $ZSHRC
 # set plugins
 sed -i.old 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting\)/' $ZSHRC
 
-source $ZSHRC
-
 echo "Run 'p10k configure' to configure your prompt with powerlevel10k"
