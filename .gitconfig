@@ -91,6 +91,11 @@
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
+[branch]
+
+	# Sort branch list by the most recent commit date
+	sort = committerdate
+
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
@@ -139,25 +144,48 @@
 	changed = green
 	untracked = cyan
 
+[column]
+
+	ui = auto
+
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
+    # put the whole diff output in the commit message (for reference, will not
+    # be included in actual commit message)
+    verbose = true
 
 [diff]
 
 	# Detect copies as well as renames
 	renames = copies
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
 
 [diff "bin"]
 
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
 
+[fetcb]
+
+	# this ensures that we delete origin/blah if blah is deleted on the server,
+    # and also do it automatically for all the remotes that we have configured
+    prune = true
+    pruneTags = true
+    all = true
+
 [help]
 
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
+
+[init]
+
+	# Set default branch name to main
+	defaultBranch = main
 
 [merge]
 
@@ -170,6 +198,14 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+    # If the upstream is not set, automatically create and set it
+    autoSetupRemote = true
+
+[tag]
+
+	# treat dotted version numbers as a series of integer values for sorting
+    # purposes
+	sort = version:refname
 
 # URL shorthands
 
