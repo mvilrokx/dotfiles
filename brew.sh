@@ -83,6 +83,7 @@ brew install nvm
 brew install openssl
 brew install p7zip
 brew install pigz
+brew install pure
 brew install pv
 brew install pyenv
 brew install rename

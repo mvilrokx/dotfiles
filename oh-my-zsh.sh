@@ -3,9 +3,6 @@
 #install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install powerlevel10k theme
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
 # Install auto-suggestions plugin
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -19,13 +16,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ZSHRC=~/.zshrc
 
 # I used this to test the below sed command
-# echo "ZSH_THEME=\"random\"" | sed 's/\(ZSH_THEME=\).*/\1"powerlevel10k\/powerlevel10k"/'
-# set powerlevel10k as the default theme
-sed -i.old 's/\(^ZSH_THEME=\).*/\1"powerlevel10k\/powerlevel10k"/' $ZSHRC
+# echo "ZSH_THEME=\"random\"" | sed 's/\(ZSH_THEME=\).*/\1""/'
+# set empty theme
+sed -i.old 's/\(^ZSH_THEME=\).*/\1""/' $ZSHRC
 
 # I used this to test the below sed command
 # echo "plugins=()" | sed 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting\)/'
 # set plugins
 sed -i.old 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting\)/' $ZSHRC
 
-echo "Run 'p10k configure' to configure your prompt with powerlevel10k"
+grep -qxF 'fpath+=("$(brew --prefix)/share/zsh/site-functions")' ~/.zshrc || echo 'fpath+=("$(brew --prefix)/share/zsh/site-functions")' >> ~/.zshrc
+grep -qxF 'autoload -U promptinit; promptinit' ~/.zshrc || echo 'autoload -U promptinit; promptinit' >> ~/.zshrc
+grep -qxF 'prompt pure' ~/.zshrc || echo 'prompt pure' >> ~/.zshrc
