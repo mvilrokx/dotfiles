@@ -46,15 +46,13 @@ brew install screen
 
 # Install fonts
 brew install svn
-brew tap homebrew/cask-fonts
 brew install --cask font-clear-sans
 brew install --cask font-hack-nerd-font
 brew install --cask font-roboto
 brew install --cask font-source-code-pro
 
 # Install drivers
-brew tap homebrew/cask-drivers
-brew install logitech-options
+brew install --cask logitech-options
 
 # Install other useful binaries.
 brew install ack
