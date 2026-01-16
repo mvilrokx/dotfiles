@@ -467,3 +467,32 @@ function myuptime () {
   uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
   return;
 }
+
+# Sync Claude Code settings to dotfiles and push
+function claude-sync() {
+  local dotfiles_claude=~/projects/dotfiles/.claude
+  local home_claude=~/.claude
+
+  # Check if source exists
+  if [[ ! -f "$home_claude/settings.json" ]]; then
+    echo "Error: $home_claude/settings.json not found"
+    return 1
+  fi
+
+  # Copy settings
+  cp "$home_claude/settings.json" "$dotfiles_claude/settings.json"
+  echo "Copied settings.json"
+
+  # Show what changed and commit
+  cd ~/projects/dotfiles || return 1
+  if git diff --quiet .claude/settings.json; then
+    echo "No changes to sync"
+  else
+    git diff .claude/settings.json
+    git add .claude/settings.json
+    git commit -m "chore(claude): sync plugin settings"
+    git push
+    echo "✓ Claude settings synced and pushed"
+  fi
+  cd - > /dev/null || return
+}
