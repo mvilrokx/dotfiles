@@ -1,3 +1,10 @@
+# VS Code integrated terminal detection - early exit for clean shell integration
+if [[ "$TERM_PROGRAM" == "vscode" && -n "$VSCODE_INJECTION" ]]; then
+    autoload -Uz compinit && compinit -C
+    PS1='%n:%~$ '
+    return
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
