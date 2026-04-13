@@ -52,13 +52,12 @@ brew install --cask font-roboto
 brew install --cask font-source-code-pro
 
 # Install drivers
-brew install --cask logitech-options
+brew install --cask logi-options+
 
 # Install other useful binaries.
 brew install ack
 brew install ansible
 brew install automake
-brew install brew-cask-completion
 brew install dockutil
 brew install gawk
 brew install git
