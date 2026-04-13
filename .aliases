@@ -1,9 +1,6 @@
 # To use these aliases with zsh, just symlink this file like so:
 # $ ln -s ~/.aliases ~/.oh-my-zsh/custom/aliases.zsh
 
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias cd..='cd ..'
 alias ..='cd ..'
