@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Remove oh-my-zsh's md alias (from lib/directories.zsh) so our md() function works
+unalias md 2>/dev/null
 # Create a new directory and enter it
 function md() {
 	mkdir -p "$@" && cd "$_" || return;

@@ -22,7 +22,6 @@ alias df='df -m'
 alias eg='vim ~/.gitconfig'
 alias gc='git commit'
 alias h=history
-alias md='mkdir -p'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
