@@ -446,22 +446,12 @@ Usage: mynewscript SCRIPT_NAME.ext\n"
 	$EDITOR "$filename"
 }
 
-function myinfo () {
-  printf "CPU: "
-  cat /proc/cpuinfo | grep "model name" | head -1 | awk '{ for (i = 4; i <= NF; i++) printf "%s ", $i }'
-  printf "\n"
-
-  cat /etc/issue | awk '{ printf "OS: %s %s %s %s | " , $1 , $2 , $3 , $4 }'
-  uname -a | awk '{ printf "Kernel: %s " , $3 }'
-  uname -m | awk '{ printf "%s | " , $1 }'
-  kded4 --version | grep "KDE Development Platform" | awk '{ printf "KDE: %s", $4 }'
-  printf "\n"
-  uptime | awk '{ printf "Uptime: %s %s %s", $3, $4, $5 }' | sed 's/,//g'
-  printf "\n"
-  cputemp | head -1 | awk '{ printf "%s %s %s\n", $1, $2, $3 }'
-  cputemp | tail -1 | awk '{ printf "%s %s %s\n", $1, $2, $3 }'
-  #cputemp | awk '{ printf "%s %s", $1 $2 }'
-}
+ function myinfo() {
+   printf "CPU: %s\n" "$(sysctl -n machdep.cpu.brand_string)"
+   printf "OS: %s %s\n" "$(sw_vers -productName)" "$(sw_vers -productVersion)"
+   printf "Kernel: %s\n" "$(uname -r)"
+   printf "Uptime: %s\n" "$(uptime | awk '{print $3, $4, $5}' | sed 's/,//g')"
+ }
 
 function myuptime () {
   uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
