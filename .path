@@ -3,8 +3,7 @@
 # user bin
 export PATH="$HOME/bin:$PATH"
 
-# Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew's shellenv runs in ~/.zshenv so non-interactive shells get it too
 
 # go
 export PATH="$PATH:$(go env GOPATH)/bin"

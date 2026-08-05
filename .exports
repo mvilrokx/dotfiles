@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-# Make VS Code the default editor.
-export EDITOR='code --wait --new-window';
+# EDITOR is set in ~/.zshenv so non-interactive shells get it too
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
