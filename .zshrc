@@ -123,8 +123,15 @@ source ~/.functions
 command -v mise >/dev/null && eval "$(mise activate zsh)"
 
 # fzf keybindings (Ctrl-R history, Ctrl-T files, Alt-C cd) and completion
-# (--zsh needs fzf >= 0.48; stderr silenced so older fzf degrades to a no-op)
-command -v fzf >/dev/null && source <(fzf --zsh 2>/dev/null)
+if command -v fzf >/dev/null; then
+	if fzf --zsh >/dev/null 2>&1; then
+		source <(fzf --zsh)
+	else
+		# fzf < 0.48 (e.g. Ubuntu 24.04) ships the bindings as files instead
+		[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+		[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+	fi
+fi
 
 # zoxide: frecency-based `z` jump command (cd itself is untouched)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
