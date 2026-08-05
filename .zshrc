@@ -123,13 +123,15 @@ source ~/.functions
 command -v mise >/dev/null && eval "$(mise activate zsh)"
 
 # fzf keybindings (Ctrl-R history, Ctrl-T files, Alt-C cd) and completion
-command -v fzf >/dev/null && source <(fzf --zsh)
+# (--zsh needs fzf >= 0.48; stderr silenced so older fzf degrades to a no-op)
+command -v fzf >/dev/null && source <(fzf --zsh 2>/dev/null)
 
 # zoxide: frecency-based `z` jump command (cd itself is untouched)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 autoload -U promptinit; promptinit
-prompt pure
+# pure comes from brew on macOS; fall back to the default prompt where absent
+prompt -l 2>/dev/null | grep -qw pure && prompt pure
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="$HOME/.rd/bin:$PATH"
