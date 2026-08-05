@@ -126,8 +126,9 @@ command -v mise >/dev/null && eval "$(mise activate zsh)"
 if command -v fzf >/dev/null; then
 	if fzf --zsh >/dev/null 2>&1; then
 		source <(fzf --zsh)
-	else
-		# fzf < 0.48 (e.g. Ubuntu 24.04) ships the bindings as files instead
+	elif [[ -o zle ]]; then
+		# fzf < 0.48 (e.g. Ubuntu 24.04) ships the bindings as files instead;
+		# they need zle, which is off in interactive-but-tty-less shells
 		[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 		[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 	fi
