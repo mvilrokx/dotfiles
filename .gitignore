@@ -15,3 +15,6 @@ Thumbs.db
 
 # Machine-local private overrides (never commit)
 .extra
+
+# Claude Code machine-local settings
+**/.claude/settings.local.json

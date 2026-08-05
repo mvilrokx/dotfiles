@@ -11,6 +11,8 @@
 
 # Communication
 - Be concise - skip lengthy explanations unless asked
+- Write in plain language: complete sentences, define terms on first use, no jargon-dense
+  noun-stacking. Concise AND plain - never concise by cramming several concepts into one clause
 - Make reasonable assumptions rather than asking many questions
 
 # Workflow
@@ -25,6 +27,8 @@
 # Git
 - Use conventional commits (feat:, fix:, docs:, refactor:, test:, chore:)
 - Keep commits small and focused
+- **Always respect `.gitignore`** — check it before staging files or investigating why
+  generated files don't show in git diff
 
 # Security
 - Never hardcode secrets, credentials, or API keys

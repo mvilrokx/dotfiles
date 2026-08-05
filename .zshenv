@@ -7,3 +7,6 @@
 
 # Make VS Code the default editor.
 export EDITOR='code --wait --new-window'
+
+# Rust toolchain (rustup), where installed.
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
