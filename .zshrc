@@ -74,7 +74,11 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+# Pure prompt is used instead of an oh-my-zsh theme (see promptinit below)
+ZSH_THEME=""
+
+# Note: zsh-history-substring-search must load after zsh-syntax-highlighting
+plugins=(brew copyfile git kubectl macos sudo web-search zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
 
 # Brew Completion
 if type brew &>/dev/null; then
@@ -84,8 +88,9 @@ fi
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_profile
 source ~/.path
-source ~/.extra
+[ -f ~/.extra ] && source ~/.extra
 source ~/.exports
+source ~/.history
 source ~/.aliases
 source ~/.functions
 
@@ -114,7 +119,6 @@ source ~/.functions
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
 

@@ -1,5 +1,4 @@
-# To use these history settings with zsh, just symlink this file like so: 
-# $ ln -s ~/.history ~/.oh-my-zsh/custom/history.zsh
+# Zsh history configuration, sourced by ~/.zshrc
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
