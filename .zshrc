@@ -137,8 +137,10 @@ fi
 # zoxide: frecency-based `z` jump command (cd itself is untouched)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
+# pure prompt: brew's site-functions on macOS, git clone to ~/.zsh/pure elsewhere
+[ -d "$HOME/.zsh/pure" ] && fpath+=("$HOME/.zsh/pure")
 autoload -U promptinit; promptinit
-# pure comes from brew on macOS; fall back to the default prompt where absent
+# fall back to the default prompt where pure is absent
 prompt -l 2>/dev/null | grep -qw pure && prompt pure
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
