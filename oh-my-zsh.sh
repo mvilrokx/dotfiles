@@ -2,7 +2,8 @@
 
 # Install oh-my-zsh (skip if already installed)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    # KEEP_ZSHRC prevents the installer from displacing our repo-managed ~/.zshrc
+    KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
@@ -30,11 +31,8 @@ ZSHRC=~/.zshrc
 # set empty theme
 sed -i.old 's/\(^ZSH_THEME=\).*/\1""/' $ZSHRC
 
-# I used this to test the below sed command
-# echo "plugins=()" | sed 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting\)/'
-# set plugins
-sed -i.old 's/\(^plugins=\).*/\1\(brew copyfile git history-substring-search kubectl macos sudo web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting\)/' $ZSHRC
+# set plugins (zsh-history-substring-search must load after zsh-syntax-highlighting)
+sed -i.old 's/\(^plugins=\).*/\1\(brew copyfile git kubectl macos sudo web-search zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search\)/' $ZSHRC
 
-grep -qxF 'fpath+=("$(brew --prefix)/share/zsh/site-functions")' ~/.zshrc || echo 'fpath+=("$(brew --prefix)/share/zsh/site-functions")' >> ~/.zshrc
 grep -qxF 'autoload -U promptinit; promptinit' ~/.zshrc || echo 'autoload -U promptinit; promptinit' >> ~/.zshrc
 grep -qxF 'prompt pure' ~/.zshrc || echo 'prompt pure' >> ~/.zshrc

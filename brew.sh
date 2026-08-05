@@ -14,7 +14,7 @@ BREW_PREFIX=$(brew --prefix)
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+ln -sf "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -44,7 +44,6 @@ brew install grep
 brew install screen
 
 # Install fonts
-brew install svn
 brew install --cask font-clear-sans
 brew install --cask font-hack-nerd-font
 brew install --cask font-roboto
@@ -59,19 +58,17 @@ brew install ansible
 brew install automake
 brew install dockutil
 brew install gawk
+brew install gh
 brew install git
 brew install git-lfs
 brew install gperf
 brew install gradle
-brew install grep
 brew install help2man
 brew install httpie
-brew install hub
 brew install imagemagick
 brew install jq
 brew install kcat
 brew install libtool
-brew install mackup
 brew install maven
 brew install mas
 brew install node
@@ -84,14 +81,26 @@ brew install pv
 brew install pyenv
 brew install rename
 brew install ssh-copy-id
-# not supported
-# brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 brew install telnet
 brew install tmux
 brew install trash
 brew install tree
-brew install ttyrec
 brew install ykman
+
+# Additional tools in active use
+brew install asdf
+brew install chezmoi
+brew install czkawka
+brew install duckdb
+brew install golangci-lint
+brew install kind
+brew install mosh
+brew install nmap
+brew install rbenv
+brew install ripgrep
+brew install witr
+brew install xcodegen
+brew install zbar
 
 # Install Applications.
 brew install --cask 1password
@@ -126,8 +135,11 @@ brew install --cask visual-studio-code
 brew install --cask vlc
 brew install --cask xquartz
 brew install --cask zoom
-
-brew install --cask hpedrorodrigues/tools/dockutil
+brew install --cask 1password-cli
+brew install --cask claude-code
+brew install --cask copilot-cli
+brew install --cask kap
+brew install --cask vnc-viewer
 
 # Install apps from the App Store
 # requires mas, which is installed in the above brews
