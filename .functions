@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Remove oh-my-zsh's md alias (from lib/directories.zsh) so our md() function works
 unalias md 2>/dev/null
@@ -18,18 +18,13 @@ function font() {
 	brew install --cask "${fontName}";
 }
 
+# Install a formula and record it in the dotfiles brew manifest
 function addBrew() {
-	if brew ls --versions $1 > /dev/null; then
+	if brew ls --versions "$1" > /dev/null; then
 		echo "$1 is already installed"
 	else
-		brew install $1
-		echo "$1" >> ~/.dotfiles/.brew/brews.txt
-		sort -o ~/.dotfiles/.brew/brews.txt ~/.dotfiles/.brew/brews.txt
+		brew install "$1" && echo "brew install $1" >> ~/Projects/dotfiles/brew.sh
 	fi
-}
-
-function updateBrews() {
-	sort -o ~/.dotfiles/.brew/brews.txt ~/.dotfiles/.brew/brews.txt
 }
 
 function darkmode() {
@@ -65,15 +60,7 @@ function shells {
   echo "Current Shell:"
   echo "$0"
   echo "Available Shells:"
-  echo "
-  /bin/bash
-  /bin/csh
-  /bin/fish
-  /bin/ksh
-  /bin/sh
-  /bin/tcsh
-  /bin/zsh
-  "
+  cat /etc/shells
 }
 
 function mark {
@@ -168,15 +155,18 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-function localip(){
-	function _localip(){ echo "📶  ""$(ipconfig getifaddr "$1")"; }
-	export -f _localip
-	local purple="\x1B\[35m" reset="\x1B\[m"
-	networksetup -listallhardwareports | \
-		sed -r "s/Hardware Port: (.*)/${purple}\1${reset}/g" | \
-		sed -r "s/Device: (en.*)$/_localip \1/e" | \
-		sed -r "s/Ethernet Address:/📘 /g" | \
-		sed -r "s/(VLAN Configurations)|==*//g"
+# Show the local IP of every active network interface
+function localip() {
+	local port device ip
+	networksetup -listallhardwareports | while read -r line; do
+		case $line in
+			"Hardware Port: "*) port=${line#Hardware Port: } ;;
+			"Device: "*)
+				device=${line#Device: }
+				ip=$(ipconfig getifaddr "$device" 2>/dev/null) || continue
+				printf '📶 %s (%s): %s\n' "$port" "$device" "$ip" ;;
+		esac
+	done
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
@@ -209,8 +199,11 @@ function gz() {
 }
 
 # Run `dig` and display the most useful info
+# (ANY queries are refused by most DNS servers nowadays, RFC 8482)
 function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer;
+	dig +nocmd "$1" A +multiline +noall +answer;
+	dig +nocmd "$1" AAAA +multiline +noall +answer;
+	dig +nocmd "$1" MX +multiline +noall +answer;
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
@@ -344,12 +337,6 @@ meteo() {
 	curl -s "$LOCALE.wttr.in/$LOCATION"
 }
 
-camerausedby() {
-	echo "Checking to see who is using the iSight camera… 📷"
-	usedby=$(lsof | grep -w "AppleCamera\|USBVDC\|iSight" | awk '{printf $2"\n"}' | xargs ps)
-	echo -e "Recent camera uses:\n$usedby"
-}
-
 # reset Xcode simulators
 simreset(){
   sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService; xcrun simctl list devices | grep "iPhone\|iPad" | awk '{print $(NF -1)}' | cut -d "(" -f2 | cut -d ")" -f1 | grep -E "^[0-9A-F]{8}-([0-9A-F]{4}-){3}[0-9A-F]{12}$" | xargs -I {} xcrun simctl erase "{}"
@@ -395,12 +382,13 @@ fi
 newscript() {
 	# Config
 	# where your scripts are stored
-	local scriptdir=~/.dotfiles/bin/
+	local scriptdir=~/bin/
 	# if no extension is provided, default to
 	local default_ext=sh
 	# optional, where skeleton scripts (e.g. rb.txt) are stored
 	local defaults_txt=~/.newscript_defaults/
 	# End config
+	mkdir -p "${scriptdir%/}"
 	local filename="${scriptdir%/}/$1"
 
 	if [[ $# == 0 ]]; then # no argument, display help and exit
@@ -411,8 +399,8 @@ Usage: mynewscript SCRIPT_NAME.ext\n"
 	fi
 	# get the extension from the filename
 	ext=${filename#*.}
-	# if there's no extenstion, add default
-	if [[ $ext == '$filename' ]]; then
+	# if there's no extension, add default
+	if [[ "$ext" == "$filename" ]]; then
 		ext=$default_ext
 		filename=$filename.$ext
 	fi
@@ -423,7 +411,7 @@ Usage: mynewscript SCRIPT_NAME.ext\n"
 		case $ext in
       js ) echo -e "#!/usr/bin/env node" >> $filename;;
 			rb ) echo -e "#!/usr/bin/env ruby" >> $filename;;
-			py ) echo -e "#!/usr/bin/env python" >> $filename;;
+			py ) echo -e "#!/usr/bin/env python3" >> $filename;;
 			pl ) echo -e "#!/usr/bin/env perl" >> $filename;;
 			sh | bash ) echo -e "#!/bin/bash" >> $filename;;
 			zsh ) echo -e "#!/bin/zsh" >> $filename;;
