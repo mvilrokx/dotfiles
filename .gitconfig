@@ -17,7 +17,7 @@
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
 	# Pull in remote changes for the current repository and all its submodules
-	p = git pull --recurse-submodules
+	p = pull --recurse-submodules
 
 	# Clone a repository including all submodules
 	c = clone --recursive
@@ -93,14 +93,13 @@
 
 [branch]
 
-	# Sort branch list by the most recent commit date
-	sort = committerdate
+	# Sort branch list by the most recent commit date (newest first)
+	sort = -committerdate
 
 [core]
 
-	# Use custom `.gitignore` and `.gitattributes`
+	# Use custom global `.gitignore`
 	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -110,10 +109,6 @@
 	# Make `git rebase` safer on macOS
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
-
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
 
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
@@ -169,7 +164,7 @@
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
 
-[fetcb]
+[fetch]
 
 	# this ensures that we delete origin/blah if blah is deleted on the server,
     # and also do it automatically for all the remotes that we have configured
@@ -179,8 +174,8 @@
 
 [help]
 
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+	# Suggest corrections for mistyped commands, but ask before running them
+	autocorrect = prompt
 
 [init]
 
@@ -201,6 +196,11 @@
     # If the upstream is not set, automatically create and set it
     autoSetupRemote = true
 
+[rerere]
+
+	# Remember how merge conflicts were resolved and reuse the resolution
+	enabled = true
+
 [tag]
 
 	# treat dotted version numbers as a series of integer values for sorting
@@ -213,9 +213,8 @@
 
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
 
-[url "git://github.com/"]
+[url "https://github.com/"]
 
 	insteadOf = "github:"
 
@@ -223,8 +222,7 @@
 
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
 
-[url "git://gist.github.com/"]
+[url "https://gist.github.com/"]
 
 	insteadOf = "gist:"
