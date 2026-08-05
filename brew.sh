@@ -53,7 +53,6 @@ brew install --cask font-source-code-pro
 brew install --cask logi-options+
 
 # Install other useful binaries.
-brew install ack
 brew install ansible
 brew install automake
 brew install dockutil
