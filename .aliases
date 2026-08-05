@@ -16,6 +16,7 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 alias c=clear
+alias ccat='bat'
 alias df='df -m'
 alias eg='vim ~/.gitconfig'
 alias gc='git commit'

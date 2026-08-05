@@ -89,6 +89,7 @@ brew install ykman
 
 # Additional tools in active use
 brew install asdf
+brew install bat
 brew install chezmoi
 brew install czkawka
 brew install duckdb
