@@ -93,6 +93,7 @@ brew install bat
 brew install chezmoi
 brew install czkawka
 brew install duckdb
+brew install fzf
 brew install golangci-lint
 brew install kind
 brew install mosh
@@ -102,6 +103,7 @@ brew install ripgrep
 brew install witr
 brew install xcodegen
 brew install zbar
+brew install zoxide
 
 # Install Applications.
 brew install --cask 1password

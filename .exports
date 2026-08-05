@@ -24,6 +24,10 @@ export LESS_TERMCAP_md=$'\e[1;33m'; # yellow
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
+# Use ripgrep for fzf file listing (fast, honors .gitignore)
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"';
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND";
+
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);

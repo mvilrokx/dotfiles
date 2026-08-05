@@ -119,6 +119,12 @@ source ~/.functions
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# fzf keybindings (Ctrl-R history, Ctrl-T files, Alt-C cd) and completion
+command -v fzf >/dev/null && source <(fzf --zsh)
+
+# zoxide: frecency-based `z` jump command (cd itself is untouched)
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
 autoload -U promptinit; promptinit
 prompt pure
 
