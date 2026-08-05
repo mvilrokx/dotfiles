@@ -119,6 +119,9 @@ source ~/.functions
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# mise: manages ruby/node versions (replaces rbenv/nvm/asdf; python is uv's job)
+command -v mise >/dev/null && eval "$(mise activate zsh)"
+
 # fzf keybindings (Ctrl-R history, Ctrl-T files, Alt-C cd) and completion
 command -v fzf >/dev/null && source <(fzf --zsh)
 

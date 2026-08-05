@@ -70,14 +70,11 @@ brew install kcat
 brew install libtool
 brew install maven
 brew install mas
-brew install node
-brew install nvm
 brew install openssl
 brew install p7zip
 brew install pigz
 brew install pure
 brew install pv
-brew install pyenv
 brew install rename
 brew install ssh-copy-id
 brew install telnet
@@ -87,7 +84,6 @@ brew install tree
 brew install ykman
 
 # Additional tools in active use
-brew install asdf
 brew install bat
 brew install chezmoi
 brew install czkawka
@@ -95,9 +91,9 @@ brew install duckdb
 brew install fzf
 brew install golangci-lint
 brew install kind
+brew install mise
 brew install mosh
 brew install nmap
-brew install rbenv
 brew install ripgrep
 brew install witr
 brew install xcodegen

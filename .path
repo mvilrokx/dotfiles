@@ -8,9 +8,6 @@ export PATH="$HOME/bin:$PATH"
 # go
 export PATH="$PATH:$(go env GOPATH)/bin"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
