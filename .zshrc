@@ -114,3 +114,10 @@ source ~/.functions
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+autoload -U promptinit; promptinit
+prompt pure
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/mvilrokx/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
